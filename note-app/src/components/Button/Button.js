@@ -10,6 +10,7 @@ const Button = styled.button`
   font-size: 16px;
   text-transform: uppercase;
   padding: 0;
+  font-weight: 600;
 
   ${({ secondary }) =>
     secondary &&
