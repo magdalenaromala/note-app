@@ -19,5 +19,3 @@ UserPageTemplate.defaultProps = {
 };
 
 export default UserPageTemplate;
-
-

@@ -1,51 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 
-const twitters = [
-  {
-    title: 'Future guy',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '1 day',
-    twitterName: 'harari_yuval',
-  },
-  {
-    title: 'Redux guy',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '1 day',
-    twitterName: 'dan_abramov',
-  },
-  {
-    title: 'React router stuff',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '5 days',
-    twitterName: 'mjackson',
-  },
-  {
-    title: 'Super animacje!',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '10 days',
-    twitterName: 'sarah_edo',
-  },
-];
-
-const Twitters = () => (
+const Twitters = ({ twitters }) => (
   <GridTemplate pageType="twitters">
-    {twitters.map(item => (
+    {twitters.map(({ title, content, twitterName, created, id }) => (
       <Card
+        id={id}
         cardType="twitters"
-        title={item.title}
-        content={item.content}
-        twitterName={item.twitterName}
-        created={item.created}
-        key={item.title}
+        title={title}
+        content={content}
+        twitterName={twitterName}
+        created={created}
+        key={id}
       />
     ))}
   </GridTemplate>
 );
 
-export default Twitters;
+Twitters.propTypes = {
+  twitters: PropTypes.arrayOf(
+    PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    cardType: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    twitterName: PropTypes.string.isRequired,
+    created: PropTypes.string.isRequired,
+  }),
+  ),
+};
+
+Twitters.defaultProps = {
+  twitters: [],
+};
+
+const mapStateToProps = state => {
+  const { twitters } = state;
+  return { twitters };
+};
+
+export default connect(mapStateToProps)(Twitters);
