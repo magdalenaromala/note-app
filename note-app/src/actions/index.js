@@ -14,6 +14,9 @@ export const addItem = (itemType, itemContent) => {
       .toString(36)
       .substr(2, 9)}`;
 
+  // dispatch({type: 'ADD_ITEM_REQUEST'})
+  // return axios('blabla', 'getState().').then(response => dispatch({ type: 'ADD_ITEM_SUCCESS', response})).catch()
+
   return {
     type: 'ADD_ITEM',
     payload: {
