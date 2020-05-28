@@ -73,4 +73,3 @@ Sidebar.defaultProps = {
 };
 
 export default withContext(Sidebar);
-

@@ -7,8 +7,6 @@ import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
 import { routes } from 'routes';
-import { connect } from 'react-redux';
-import { authenticate as authenticateAction } from 'actions';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -32,12 +30,12 @@ const StyledLink = styled(Link)`
   margin: 20px 0 50px;
 `;
 
-const LoginPage = ({ authenticate }) => (
+const RegisterPage = () => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={({ username, password }) => {
-        authenticate(username, password);
+        console.log('hello');
       }}
     >
       {({ handleChange, handleBlur, values }) => (
@@ -61,21 +59,14 @@ const LoginPage = ({ authenticate }) => (
               value={values.title}
             />
             <Button activecolor="notes" type="submit">
-              sign in
+              register
             </Button>
           </StyledForm>
-          <StyledLink to={routes.register}>I want my account!</StyledLink>
+          <StyledLink to={routes.login}>I want to log in!</StyledLink>
         </>
       )}
     </Formik>
   </AuthTemplate>
 );
 
-const mapDispatchToProps = dispatch => ({
-  authenticate: (username, password) => dispatch(authenticateAction(username, password)),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(LoginPage);
+export default RegisterPage;

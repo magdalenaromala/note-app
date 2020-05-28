@@ -63,7 +63,7 @@ const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
           />
           {pageContext === 'twitters' && (
             <StyledInput
-              placeholder="twitter name eg. lorem_ipsum"
+              placeholder="twitter name eg. hello_roman"
               type="text"
               name="twitterName"
               onChange={handleChange}
